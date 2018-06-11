@@ -8,5 +8,10 @@ public class Addition{
 	int d;
 	d = a + c;
 	System.out.println("Sum of a and c is: "+d);
+	
+	int e;
+	e = c + d;
+	System.out.println("Sum of c and d is: "+e);
+	
 	}
 }
