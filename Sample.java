@@ -3,5 +3,7 @@ public class Sample{
 	System.out.println("This is sample program");
 	System.out.println("Edited");
 	System.out.println("Hello");
+	System.out.println("Added a new message");
+	
 	}
 }
