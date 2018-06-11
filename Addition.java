@@ -5,5 +5,8 @@ public class Addition{
 	int c;
 	c= a + b;
 	System.out.println("Sum of a and b is: "+c);
+	int d;
+	d = a + c;
+	System.out.println("Sum of a and c is: "+d);
 	}
 }
