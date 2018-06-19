@@ -1,0 +1,34 @@
+1.Daniel has 3 apples; Amber has 2 apples. How many apples do Daniel and Amber have together?
+
+package task;
+
+public class DanielAmber1 {
+
+	public static void main(String[] args) {
+	int daniel=3;
+	int amber = 2;
+	System.out.println("Daniel and Amber together have "+(daniel+amber)+ " apples");
+
+	}
+}
+
+
+
+2.Daniel has 3.5 apples and Amber has 2.5 apples. How many apples do Daniel and Amber have together?
+
+
+package task;
+
+public class DanielAmber2 {
+
+	public static void main(String[] args) {
+		float daniel=3.5f;
+		float amber= 2.5f;
+		float daniel_amber;
+		daniel_amber=daniel+amber;
+		System.out.println("Daniel and Amber have "+daniel_amber+" apples");
+
+
+	}
+
+}
