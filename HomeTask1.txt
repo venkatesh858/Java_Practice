@@ -1,0 +1,195 @@
+1. Create git repository on git.epam.com/github.com
+Created an account in github.com and logged into account
+Clicked on New repository button
+Provided Repository name (Java_Practice)
+selected public radio button
+Clicked on Create reposity
+
+https://github.com/venkatesh858/Java_Practice
+
+
+
+
+2. Clone using SSH keys
+
+git clone https://github.com/venkatesh858/Java_Practice.git
+Cloning into 'Java_Practice'...
+remote: Counting objects: 52, done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 52 (delta 26), reused 41 (delta 21), pack-reused 0
+Unpacking objects: 100% (52/52), done.
+
+
+
+
+
+3. Create 3 commits in master branch
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git add GitCommits.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git commit -m "First Commit"
+[master 32cd13a] First Commit
+ 1 file changed, 5 insertions(+)
+ create mode 100644 GitCommits.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git add GitCommits.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git commit -m "Second Commit"
+[master f08feb7] Second Commit
+ 1 file changed, 1 insertion(+)
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git add GitCommits.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git commit -m "Third Commit"
+[master 73cbd34] Third Commit
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+
+ 
+ 
+4. Create new "dev" branch and push 2 commits inside
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git branch dev1
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git checkout dev1
+Switched to branch 'dev1'
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git push --set-upstream origin dev1
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/venkatesh858/Java_Practice.git
+ * [new branch]      dev1 -> dev1
+Branch 'dev1' set up to track remote branch 'dev1' from 'origin'.
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git add CommitToDev.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git commit -m "First commit in Dev Branch"
+[dev1 6c6aedc] First commit in Dev Branch
+ 1 file changed, 5 insertions(+)
+ create mode 100644 CommitToDev.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git add CommitToDev.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git commit -m "Second commit in Dev Branch"
+[dev1 d1535a4] Second commit in Dev Branch
+ 1 file changed, 1 insertion(+)
+
+
+ 
+ 
+5. Merge "dev" to "master"
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git merge dev1
+Updating 73cbd34..d1535a4
+Fast-forward
+ CommitToDev.java | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 CommitToDev.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git push
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 632 bytes | 210.00 KiB/s, done.
+Total 6 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 1 local object.
+To https://github.com/venkatesh858/Java_Practice.git
+   73cbd34..d1535a4  master -> master
+
+
+   
+   
+* 6. Add 2 additional commits to "dev", 1 commit in master. Rebase "dev" with new commits from "master"
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git checkout dev1
+Switched to branch 'dev1'
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git add GitRebase.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git commit -m "First Commit in dev1 for rebase"
+[dev1 281763a] First Commit in dev1 for rebase
+ 1 file changed, 1 deletion(-)
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git add GitRebase.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git commit -m "Second commit in dev1 for rebase"
+[dev1 d2ad879] Second commit in dev1 for rebase
+ 1 file changed, 1 insertion(+)
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git checkout master
+Switched to branch 'master'
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git add GitRebase.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git commit -m "First commit in master for rebase"
+[master 446b34d] First commit in master for rebase
+ 1 file changed, 1 insertion(+)
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git rebase dev1
+First, rewinding head to replay your work on top of it...
+Applying: First commit in master for rebase
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git push
+Counting objects: 7, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 791 bytes | 395.00 KiB/s, done.
+Total 7 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 2 local objects.
+To https://github.com/venkatesh858/Java_Practice.git
+   f6b01b8..fb8eb0f  master -> master
+
+
+  
+* 7. Add 2 additonal commits in "dev". Cherry-pick first commit to master. Revert the second commit.
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git add GitCherryPick.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git commit -m "commit1 for cherry pick"
+[dev1 837901f] commit1 for cherry pick
+ 1 file changed, 5 insertions(+)
+ create mode 100644 GitCherryPick.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git add GitCherryPick.java
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
+$ git commit -m "commit2 for cherry pick"
+[dev1 1fd4fb1] commit2 for cherry pick
+ 1 file changed, 1 insertion(+)
+
+Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
+$ git revert HEAD~1
+[master a3bd872] Revert "rem"
+ 1 file changed, 5 insertions(+)
+ create mode 100644 GitCherrypick.java
