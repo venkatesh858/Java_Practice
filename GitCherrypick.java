@@ -1,5 +1,6 @@
 public class GitCherryPick{
 	public static void main(String[] args){
-	System.out.println("This is sample program");
+	System.out.println("First in dev1");
+	System.out.println("Second in dev1");
 	}
 }
