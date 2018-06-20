@@ -170,7 +170,7 @@ To https://github.com/venkatesh858/Java_Practice.git
 
   
 
-* 7. Add 2 additonal commits in "dev". Cherry-pick first commit to master. Revert the second commit.
+7. Add 2 additonal commits in "dev". Cherry-pick first commit to master. Revert the second commit.
 
 
 Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
@@ -201,12 +201,6 @@ Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
 $ git revert 0aebde3d95d307ba92f2bc2dacab1be0d493682f
 [dev1 7669feb] Revert "second commit in dev branch for cherry pick"
  1 file changed, 1 insertion(+), 3 deletions(-)
-
-Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (dev1)
-$ git checkout master
-Switched to branch 'master'
-Your branch is ahead of 'origin/master' by 1 commit.
-  (use "git push" to publish your local commits)
 
 Venkatesham_Boddu@EPINHYDW0933 MINGW64 /d/Git/Java_Practice (master)
 $ git push
