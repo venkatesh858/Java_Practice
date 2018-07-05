@@ -1,0 +1,379 @@
+/*
+ * Home Task 4.1
+ * Program 1:
+ * 
+ * Write a program for below problem:
+ * You are driving a  little too fast, and a  police officer stops you. Write code to compute the result, encoded as an int value: 0=no ticket, 1=small ticket, 2=big ticket. 
+ * If speed is   60 or   less, the result is   0.   
+ * If speed is   between 61   and 80 inclusive, the result is   1. 
+ * If speed is 81 or   more, the result is   2. 
+ * Unless it is your birthday -- on that day, your speed can be   5 higher in all cases.
+ */
+
+package task;
+
+public class CaughtSpeeding {
+
+	public static int calculateTicket(int speed, boolean isBirthday) {
+		int result = 0;
+		if (isBirthday == false) {
+			if (speed <= 60)
+				result = 0;
+			else if ((speed >= 61) && (speed <= 80))
+				result = 1;
+			else if (speed >= 81)
+				result = 2;
+		} else if (isBirthday == true) {
+			if (speed <= 65)
+				result = 0;
+			else if ((speed >= 66) && (speed <= 85))
+				result = 1;
+			else if (speed >= 86)
+				result = 2;
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		int a = calculateTicket(65, false);
+		if (a == 0)
+			System.out.println("No ticket");
+		else if (a == 1)
+			System.out.println("Small ticket");
+		else if (a == 2)
+			System.out.println("Big ticket");
+	}
+}
+
+-------------------------------------------------------------------------
+/*
+ * Home Task 4.1
+ * Program 2:
+ * 
+ * Write a program for below problem:
+ * The number 6 is   a  truly great number. Given two int values, a  and b, return true if either one is 6. 
+ * Or if   their sum or difference is  6. 
+ * Note: the function Math.abs(num) computes the absolute value of a number.
+ */
+package task;
+
+public class CalculateValue {
+	public static boolean compare(int a, int b) {
+
+		return ((a == 6) || (b == 6) || ((a + b) == 6) || ((a - b) == 6) || ((b - a) == 6));
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Result1: " + compare(6, 7));
+		System.out.println("Result2: " + compare(2, 6));
+		System.out.println("Result3: " + compare(6, 7));
+		System.out.println("Result4: " + compare(3, 3));
+		System.out.println("Result5: " + compare(18, 12));
+		System.out.println("Result6: " + compare(15, 9));
+		System.out.println("Result7: " + compare(2, 7));
+	}
+}
+
+
+-------------------------------------------------------------------------
+/*
+ * Home Task 4.1
+ * Program 3
+ * 
+ * We are having a party with amounts of tea and candy. 
+ * Return the int outcome of the party encoded as 0=bad, 1=good, or 2=great. 
+ * A party is good (1) if both tea and candy are at least 5. 
+ * However, if either tea or candy is at least double the amount of the other one, the party is great (2). 
+ * However, in all cases, if either tea or candy is less than 5, the party is always bad (0).
+ */
+
+package task;
+
+public class PartyOutcome {
+
+	public int teaParty(int tea, int candy) {
+		int result = 0;
+
+		if (tea < 5 || candy < 5) {
+			result = 0;
+		} else {
+			if ((tea >= (2 * candy)) || (candy >= (2 * tea))) {
+				result = 2;
+			} else if (tea >= 5 && candy >= 5) {
+				result = 1;
+			}
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		PartyOutcome p = new PartyOutcome();
+		int a = p.teaParty(6, 8);
+		switch (a) {
+		case 0:
+			System.out.println("Party is bad");
+			break;
+		case 1:
+			System.out.println("Party is good");
+			break;
+		case 2:
+			System.out.println("Party is great");
+		}
+	}
+}
+
+-------------------------------------------------------------------------
+/*
+ * Home Task 4.1
+ * Program 4:
+ * 
+ * You have a  blue lottery ticket, with ints a, b, and c on   it. 
+ * This makes three pairs, which we'll call ab, bc, and ac. 
+ * Consider the sum of the numbers in   each pair. 
+ * If any pair sums to   exactly 10, the result is   10. 
+ * Otherwise if   the ab   sum is exactly 10 more than either bc or   ac   sums, the result is 5.
+ * Otherwise the result is 0.   
+ */
+package task;
+
+public class LotteryTicket {
+
+	public int blueTicket(int a, int b, int c) {
+		int result = 0;
+		if ((a + b) == 10 || (b + c) == 10 || (a + c) == 10) {
+			result = 10;
+		} else if ((a + b) == (b + c + 10) || (a + b) == (a + c + 10)) {
+			result = 5;
+		} else
+			result = 0;
+		return result;
+	}
+
+	public static void main(String[] args) {
+
+		LotteryTicket lt = new LotteryTicket();
+		System.out.println("Result1:  " + lt.blueTicket(9, 1, 0));
+		System.out.println("Result2:  " + lt.blueTicket(9, 2, 0));
+		System.out.println("Result3:  " + lt.blueTicket(6, 1, 4));
+		System.out.println("Result4:  " + lt.blueTicket(6, 1, 5));
+		System.out.println("Result5:  " + lt.blueTicket(10, 0, 0));
+		System.out.println("Result6:  " + lt.blueTicket(15, 0, 5));
+		System.out.println("Result7:  " + lt.blueTicket(5, 15, 5));
+		System.out.println("Result8:  " + lt.blueTicket(4, 11, 1));
+		System.out.println("Result9:  " + lt.blueTicket(13, 2, 3));
+		System.out.println("Result10: " + lt.blueTicket(8, 4, 3));
+		System.out.println("Result11: " + lt.blueTicket(8, 4, 2));
+		System.out.println("Result12: " + lt.blueTicket(8, 4, 1));
+	}
+}
+
+-------------------------------------------------------------------------
+/* 
+ * Home task 4.1
+ * Program 5:
+ * 
+ * Given three ints, a b  c, return true if   b is greater than a, and c is greater than b. 
+ * However, with the exception that if "bOk" is   true, b does not need to be   greater than a.
+ */
+package task;
+
+public class CompareIntegers {
+	public boolean inOrder(int a, int b, int c, boolean bOk) {
+		boolean result = bOk;
+		if (bOk) {
+			if (c > b) {
+				result = true;
+			} else
+				result = false;
+		} else if (!bOk) {
+			if (b > a && c > b) {
+				result = true;
+			} else
+				result = false;
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		CompareIntegers ci = new CompareIntegers();
+		System.out.println("Result 1: " + ci.inOrder(1, 2, 4, false));
+		System.out.println("Result 2: " + ci.inOrder(1, 2, 1, false));
+		System.out.println("Result 3: " + ci.inOrder(1, 1, 2, true));
+	}
+}
+
+-------------------------------------------------------------------------
+/*
+ * Home task #4
+ * Program #6:
+ * 
+ * Given two ints, each in   the range 10..99, 
+ * return true if   there is a digit that appears in both numbers, such as the 2  in 12   and 23. 
+ * 
+ */
+package task;
+
+public class DigitsSearch {
+	public boolean shareDigit(int a, int b) {
+		int ld1=a/10;
+		int rd1=a%10;
+		
+		int ld2=b/10;
+		int rd2=b%10;
+		
+		return(ld1==ld2||ld1==rd2||rd1==ld2||rd1==rd2);
+	}
+	
+	public static void main(String[] args) {
+		DigitsSearch d = new DigitsSearch();
+		System.out.println("Result1: "+d.shareDigit(12,23));
+		System.out.println("Result1: "+d.shareDigit(12,43));
+		System.out.println("Result1: "+d.shareDigit(12,44));
+	}
+}
+
+-------------------------------------------------------------------------
+/*
+ * Home Task 4.1
+ * Program 7:
+ * 
+ * Given 2  non-negative ints, a and b, 
+ * return their sum, so long as the sum has the same number of   digits as a.   
+ * If the sum has more digits than a, just return a  without b. 
+ */
+package task;
+
+public class SumNumber {
+	public int sumLimit(int a, int b){
+		int result = 0;
+		int lengthofsum=String.valueOf(a+b).length();
+		int lengthofa=String.valueOf(a).length();
+		if (lengthofsum==lengthofa)
+			result=a+b;
+		else if (lengthofsum>lengthofa)
+			result=a;
+		return result;
+	}
+	public static void main(String[] args) {
+		SumNumber s = new SumNumber();
+		System.out.println("Result 1: "+s.sumLimit(2, 3));
+		System.out.println("Result 1: "+s.sumLimit(8, 3));
+		System.out.println("Result 1: "+s.sumLimit(8, 1));
+	}
+}
+-------------------------------------------------------------------------
+/*
+ * Home Task 4.1
+ * Program 8:
+ * 
+ * Given two strings, base and remove, return a version of the base string where all instances of the remove string have been removed (not case sensitive). 
+ * You may assume that the remove string is length 1 or more. Remove only non-overlapping instances, so with "xxx" removing "xx" leaves "x".
+ */
+
+package task;
+
+public class StringRemove {
+
+	public String withoutString(String base, String remove) {
+		String removestring = "(?i)" + remove;
+		base = base.replaceAll(removestring, "");
+		
+		return base;
+	}
+
+	public static void main(String[] args) {
+
+		StringRemove s = new StringRemove();
+
+		System.out.println(s.withoutString("Hello there", "llo"));
+		System.out.println(s.withoutString("Hello theErE", "e"));
+		System.out.println(s.withoutString("Hello there", "x"));
+		System.out.println(s.withoutString("xxx", "Xx"));
+
+	}
+
+}
+-------------------------------------------------------------------------
+/*
+ * Home Task 4.1
+ * Program 9
+ * 
+ * Given a string, return the length of the largest "block" in the string. A block is a run of adjacent chars that are the same.
+ */
+
+package task;
+
+public class LargestBlockInString {
+
+	public int maxBlock(String str) {
+		if (str.length() == 0)
+			return 0;
+
+		int largest = 0;
+		int current = 1;
+
+		for (int i = 1; i < str.length(); i++) {
+			if (str.charAt(i) != str.charAt(i - 1)) {
+				if (current > largest)
+					largest = current;
+				current = 1;
+			} else {
+				current++;
+			}
+		}
+		return Math.max(largest, current);
+	}
+
+	public static void main(String[] args) {
+		LargestBlockInString l = new LargestBlockInString();
+		System.out.println("Largest block size: "
+				+ l.maxBlock("aaaabbbbbcccccccceeeff"));
+		System.out.println("Largest block size: " + l.maxBlock("hoopla"));
+		System.out
+				.println("Largest block size: " + l.maxBlock("abbCCCddBBBxx"));
+		System.out.println("Largest block size: " + l.maxBlock(""));
+
+	}
+
+}
+-------------------------------------------------------------------------
+/*
+ * Home Task 4.1
+ * Program 10:
+ * 
+ * Given a string, return the sum of the numbers appearing in the string, ignoring all other characters. 
+ * A number is a series of 1 or more digit chars in a row.
+ */
+
+package task;
+
+public class SumofIntegersInString {
+
+	public int sumNumbers(String str) {
+		int len = str.length();
+		int sum = 0;
+		String tmp = "";
+		for (int i = 0; i < len; i++) {
+			if (Character.isDigit(str.charAt(i))) {
+				if (i < len - 1 && Character.isDigit(str.charAt(i + 1))) {
+					tmp += str.charAt(i);
+				} else {
+					tmp += str.charAt(i);
+					sum += Integer.parseInt(tmp);
+					tmp = "";
+				}
+			}
+		}
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		SumofIntegersInString s = new SumofIntegersInString();
+		System.out.println("Sum of intergers is given string: "+ s.sumNumbers("abc123xyz"));
+		System.out.println("Sum of intergers is given string: "+ s.sumNumbers("aa11b33"));
+		System.out.println("Sum of intergers is given string: "+ s.sumNumbers("7 11"));
+
+	}
+
+}
+
