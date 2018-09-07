@@ -1,0 +1,454 @@
+Question:
+
+Identify the opertunity to implement different patterns explained. 
+Implement atlease one example for each pattern.
+- Singleton
+- Builder
+- Factory method
+- Abstract factory
+- Decorator
+- Strategy
+
+-- Each pattern carries 1 mark 
+-- Max marks : 6
+ 
+--------------------------------------------------------------------------------------
+Singleton:
+
+SingletonLazyInitialization.java
+
+package com.designpatterns.singleton;
+
+public class SingletonLazyInitialization {
+
+	private static SingletonLazyInitialization instance;
+
+	SingletonLazyInitialization() {
+	}
+
+	// method to return instance of class
+	public static SingletonLazyInitialization getInstance() {
+		if (instance == null) {
+			instance = new SingletonLazyInitialization();
+		}
+		return instance;
+	}
+}
+
+Runner.java
+
+package com.designpatterns.singleton;
+
+public class Runner {
+	public static void main(String[] args) {
+		SingletonLazyInitialization instance1= SingletonLazyInitialization.getInstance();
+		SingletonLazyInitialization instance2= SingletonLazyInitialization.getInstance();
+
+		System.out.println(instance1);
+		System.out.println(instance2);
+		
+        if(instance1 == instance2){
+            System.out.println("Both instances are same...");
+        }
+	}
+}
+--------------------------------------------------------------------------------------
+Builder:
+Task.java
+package com.designpatterns.builder;
+
+import java.util.Date;
+
+public class Task {
+	private final long id;
+	private String summary = "";
+	private String description = "";
+	private boolean done = false;
+	private Date dueDate;
+
+	public Task(long id) {
+		this.id = id;
+	}
+
+	public Task(long id, String summary, String description, boolean done,
+			Date dueDate) {
+		this.id = id;
+		this.summary = summary;
+		this.description = description;
+		this.done = done;
+		this.dueDate = dueDate;
+
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
+	public Date getDueDate() {
+		return new Date(dueDate.getTime());
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = new Date(dueDate.getTime());
+	}
+}
+
+
+
+TaskBulder.java
+
+package com.designpatterns.builder;
+
+import java.util.Date;
+
+public class TaskBuilder {
+
+	private final long id;
+	private String summary = "";
+	private String description = "";
+	private boolean done = false;
+	private Date dueDate;
+
+	public TaskBuilder(long id, String summary, String description,
+			boolean done, Date dueDate) {
+		this.id = id;
+		this.summary = summary;
+		this.description = description;
+		this.done = done;
+		this.dueDate = dueDate;
+	}
+
+	public TaskBuilder setSummary(String summary) {
+		this.summary = summary;
+		return this;
+	}
+
+	public TaskBuilder setDescription(String description) {
+		this.description = description;
+		return this;
+	}
+
+	public TaskBuilder setDone(boolean done) {
+		this.done = done;
+		return this;
+	}
+
+	public TaskBuilder setDueDate(Date dueDate) {
+		this.dueDate = new Date(dueDate.getTime());
+		return this;
+	}
+
+	public Task build() {
+		return new Task(id, summary, description, done, dueDate);
+	}
+}
+
+
+
+Runner.java
+
+package com.designpatterns.builder;
+
+public class Runner {
+
+	public static void main(String[] args) {
+		StringBuilder builder = new StringBuilder();
+
+		builder.append(" Hello");
+		builder.append(" Test ");
+		builder.append(5);
+
+		System.out.println(builder.toString());
+	}
+}
+
+--------------------------------------------------------------------------------------
+Factory:
+
+Currency.java
+package com.designpatterns.factory;
+
+public interface Currency {
+
+	public String getCurrency();
+	public String getSymbol();
+}
+
+India.java
+
+package com.designpatterns.factory;
+
+public class India implements Currency {
+
+	@Override
+	public String getCurrency() {
+
+		return "Rupee";
+	}
+
+	@Override
+	public String getSymbol() {
+
+		return "INR";
+	}
+
+	public static void main(String a[]) {
+		India in = new India();
+		System.out.println(in.getSymbol());
+	}
+}
+
+USA.java
+
+package com.designpatterns.factory;
+
+public class USA implements Currency {
+
+	public String getCurrency() {
+
+		return "Dollar";
+	}
+
+	public String getSymbol() {
+
+		return "$";
+	}
+
+	public static void main(String a[]) {
+
+		USA in = new USA();
+		System.out.println(in.getSymbol());
+	}
+}
+
+CurrencyFactory.java
+
+package com.designpatterns.factory;
+
+public class CurrencyFactory {
+
+	public static Currency getCurrencyByCountry(String cnty) throws Exception {
+
+		if ("IN".equalsIgnoreCase(cnty)) {
+			return new India();
+		} else if ("USA".equalsIgnoreCase(cnty)) {
+			return new USA();
+		}
+		throw new Exception("Invalid country...");
+	}
+}
+
+Runner.java
+
+package com.designpatterns.factory;
+
+public class Runner {
+	public static void main(String[] args) {
+
+		Currency usa;
+		try {
+			usa = CurrencyFactory.getCurrencyByCountry("USA");
+			System.out.println("USA currency: " + usa.getCurrency());
+			System.out.println("USA currency symbol: " + usa.getSymbol());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+--------------------------------------------------------------------------------------
+Decorator:
+
+Icecream.java
+
+package com.designpatterns.decorator;
+
+public interface Icecream {
+  public String makeIcecream();
+}
+
+
+
+SimpleIcecream.java
+
+package com.designpatterns.decorator;
+
+public class SimpleIcecream implements Icecream {
+
+  @Override
+  public String makeIcecream() {
+    return "Base Icecream";
+  }
+}
+
+HoneyDecorator.java
+
+package com.designpatterns.decorator;
+
+public class HoneyDecorator extends IcecreamDecorator {
+
+  public HoneyDecorator(Icecream specialIcecream) {
+    super(specialIcecream);
+  }
+
+  public String makeIcecream() {
+    return specialIcecream.makeIcecream() + addHoney();
+  }
+
+  private String addHoney() {
+    return " + sweet honey";
+  }
+}
+
+
+NuttyDecorator.java
+
+package com.designpatterns.decorator;
+
+public class NuttyDecorator extends IcecreamDecorator {
+
+  public NuttyDecorator(Icecream specialIcecream) {
+    super(specialIcecream);
+  }
+
+  public String makeIcecream() {
+    return specialIcecream.makeIcecream() + addNuts();
+  }
+
+  private String addNuts() {
+    return " + cruncy nuts";
+  }
+}
+
+
+
+IcecreamDecorator.java
+
+package com.designpatterns.decorator;
+
+abstract class IcecreamDecorator implements Icecream {
+
+  protected Icecream specialIcecream;
+
+  public IcecreamDecorator(Icecream specialIcecream) {
+    this.specialIcecream = specialIcecream;
+  }
+
+  public String makeIcecream() {
+    return specialIcecream.makeIcecream();
+  }
+}
+
+
+Runner.java
+
+package com.designpatterns.decorator;
+
+public class Runner {
+
+	public static void main(String args[]) {
+		Icecream icecream = new HoneyDecorator(new NuttyDecorator(new SimpleIcecream()));
+		System.out.println(icecream.makeIcecream());
+	}
+}
+--------------------------------------------------------------------------------------
+Strategy:
+
+
+Strategy.java
+
+package com.designpatterns.strategy;
+
+public interface Strategy {
+		public void lunchOrder();
+}
+
+
+LunchFromCafetaria.java
+
+package com.designpatterns.strategy;
+
+public class LunchFromCafetaria implements Strategy {
+	public void lunchOrder(){
+		System.out.println("Order Lunch from Cafetaria..");
+	}
+}
+
+
+LunchFromTinmen.java
+
+package com.designpatterns.strategy;
+
+public class LunchFromTinmen implements Strategy {
+	public void lunchOrder() {
+		System.out.println("Order Lunch from Tinmen..");
+	}
+}
+
+LunchFromDietToGo.java
+
+package com.designpatterns.strategy;
+
+public class LunchFromDietToGo implements Strategy{
+	public void lunchOrder() {
+		System.out.println("Order Lunch from Diet To Go..");
+	}
+}
+
+
+Lunch.java
+package com.designpatterns.strategy;
+
+public class Lunch {
+	private Strategy strategy;
+ 
+	public Lunch(Strategy strategy){
+		this.strategy = strategy;
+	}
+ 
+	public void handleByPolice(int speed){
+		this.strategy.lunchOrder();
+	}
+}
+
+
+
+Runner.java
+
+package com.designpatterns.strategy;
+
+public class Runner {
+	public static void main(String[] args) {
+		LunchFromCafetaria cafetaria = new LunchFromCafetaria();
+		LunchFromTinmen tinmen = new LunchFromTinmen();
+		LunchFromDietToGo diettogo = new LunchFromDietToGo();
+
+		tinmen.lunchOrder();		
+	}
+}

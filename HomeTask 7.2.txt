@@ -1,0 +1,150 @@
+Question:
+
+
+Marks - A completed solution will get 5 marks. Marks for the partially completed solution will be at mentor description. 
+
+1) Using jackson library/api perform below two tasks
+   a) Generate below json output using  Plain Old Java Object(POJO).
+
+
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+  }
+
+   
+   b) Read the above json using Plain Old Java Object(POJO) and print values.
+   
+--------------------------------------------------------
+
+
+pom.xml:
+
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+  </dependencies>
+
+  
+User.java
+
+package com.maven.sample.mavenproject;
+
+public class User {
+	private int id;
+	private int userId;
+	private String title;
+	private String body;
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	// getters and setters
+}
+
+
+GenerateJSON.java
+
+package com.maven.sample.mavenproject;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
+public class GenerateJSON {
+	public static void main(String[] args) throws JsonGenerationException,
+			JsonMappingException, IOException {
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		// For testing
+		User user = createUser();
+
+		mapper.writerWithDefaultPrettyPrinter().writeValue(
+				new File("D:\\User_Details.json"), user);
+
+		String jsonInString = mapper.writeValueAsString(user);
+		jsonInString = mapper.writerWithDefaultPrettyPrinter()
+				.writeValueAsString(user);
+		System.out.println(jsonInString);
+	}
+
+	private static User createUser() {
+
+		User user = new User();
+
+		user.setUserId(1);
+		;
+		user.setId(1);
+		user.setTitle("sunt aut facere repellat provident occaecati excepturi optio reprehenderit");
+		user.setBody("quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto");
+
+		return user;
+
+	}
+}
+
+
+
+ReadJSON.java
+package com.maven.sample.mavenproject;
+
+import java.io.File;
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class ReadJSON {
+	public static void main(String[] args) throws JsonParseException,
+			JsonMappingException, IOException {
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		User user = mapper.readValue(new File("D:\\User_Details.json"), User.class);
+		System.out.println(user);
+		System.out.println();
+		System.out.println("User ID: " + user.getUserId());
+		System.out.println("ID: " + user.getId());
+		System.out.println("Title : " + user.getTitle());
+		System.out.println("Body : " + user.getBody());
+
+	}
+}
