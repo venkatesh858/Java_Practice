@@ -1,0 +1,254 @@
+/* 
+ * Program to demonstrate usage of ArrayList
+ */
+
+package task.collections;
+
+import java.util.ArrayList;
+
+public class ArryListExample {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+
+		// Add items
+		numbers.add(10);
+		numbers.add(20);
+		numbers.add(30);
+		numbers.add(40);
+		
+		System.out.println(numbers.get(0));
+		System.out.println("Size of Array List: "+numbers.size());
+		System.out.println("Hash code: "+numbers.hashCode());
+		System.out.println("Is Empty: "+numbers.isEmpty());
+		System.out.println("Iterator: "+numbers.iterator());
+		System.out.println("Iterator: "+numbers.iterator());
+		
+		System.out.println("\nIteration 1:");
+		for (int i=0;i<numbers.size();i++){
+			System.out.println(numbers.get(i));			
+		}
+		
+		// Remove first item
+		numbers.remove(0);
+		
+		// Remove last item
+		numbers.remove(numbers.size()-1);
+		
+		System.out.println("\nIteration 2:");
+		
+		for(Integer value:numbers){
+			System.out.println(value);		
+		}	
+	}
+}
+-------------------------------------------------------------------------------------------
+/*
+ * Program to demonstrate usage of Linked List
+ */
+
+package task.collections;
+
+import java.util.LinkedList;
+
+
+public class LinkedListExample{
+	public static void main(String[] args){
+		LinkedList<String> l1 = new LinkedList<String>();
+		l1.add("Venkat");
+		l1.add("Vijay");
+		l1.add("Ravi");
+		l1.add("Ajay");
+
+		System.out.println(l1.get(1));
+		System.out.println(l1.size());
+		System.out.println(l1.getFirst());
+		System.out.println(l1.getLast());
+		System.out.println(l1.getClass());
+
+	}
+	
+}
+
+
+-------------------------------------------------------------------------------------------
+/* 
+ * Program to demonstrate usage of Set
+ */
+
+
+package task.collections;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class SetExample {
+
+	public static void main(String[] args) {
+		Set<String> set1 = new HashSet<String>();
+		
+		set1.add("dog");
+		set1.add("cat");
+		set1.add("rat");
+		set1.add("tiger");
+		set1.add("lion");
+		
+	}
+
+}
+
+-------------------------------------------------------------------------------------------
+/* 
+ * Program to demonstrate usage of HashMap
+ */
+
+package task.collections;
+
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+public class HashMapExample {
+
+	public static void main(String[] args) {
+		HashMap<Integer,String> hm = new HashMap<Integer,String>();
+		
+		hm.put(2, "Venkat");
+		hm.put(4, "Ravi");
+		hm.put(5, "Shiva");
+		hm.put(7, "Kalyan");
+		
+		for(Entry<Integer, String> m:hm.entrySet()){  
+			   System.out.println(m.getKey()+" "+m.getValue());  
+			  }  
+		System.out.println(hm.keySet());
+		System.out.println(hm.size());
+		System.out.println("is empty before clear: "+hm.isEmpty());
+		hm.clear();
+		System.out.println("is empty after clear: "+hm.isEmpty());
+	}
+
+}
+
+-------------------------------------------------------------------------------------------
+/* 
+ * Program to demonstrate usage of HashMap, LinkedHashMap, TreeMap
+ */
+
+
+package task.collections;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class SortedMapExample {
+	
+	public static void getMap(Map<Integer, String> map){
+		map.put(8, "Tiger");
+		map.put(3, "Lion");
+		map.put(5, "Fox");
+		map.put(1, "Bear");
+		map.put(12, "Dog");
+		
+		for(Integer key: map.keySet()){
+			String value=map.get(key);
+			System.out.println(key + ": "+ value);
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		HashMap<Integer,String> hm = new HashMap<Integer,String>();
+		LinkedHashMap<Integer,String> lhm = new LinkedHashMap<Integer,String>();
+		TreeMap<Integer,String> tm = new TreeMap<Integer,String>();
+
+		System.out.println("\n HashMap:");
+		getMap(hm);
+		System.out.println("\n LinkedHashMap:");
+		getMap(lhm);
+		System.out.println("\n TreeMap:");
+		getMap(tm);
+		
+	}
+
+
+}
+
+-------------------------------------------------------------------------------------------
+/* 
+ * Program to demonstrate usage of HashSet
+ */
+
+package task.collections;
+
+import java.util.*;  
+class HashSetExample{  
+ public static void main(String args[]){  
+    
+  HashSet<String> set=new HashSet<String>();  
+  set.add("Ravi");  
+  set.add("Vijay");  
+  set.add("Ravi");  
+  set.add("Ajay");  
+  System.out.println("is empty: "+set.isEmpty());
+  System.out.println("Has code: "+set.hashCode()+"\n");
+  
+  Iterator<String> itr=set.iterator();  
+  while(itr.hasNext()){  
+   System.out.println(itr.next()); 
+   
+  }  
+ }  
+}  
+
+-------------------------------------------------------------------------------------------
+/* 
+ * Program to demonstrate usage of LinkedHashSet
+ */
+
+package task.collections;
+  
+import java.util.*;  
+
+class LinkedHasSetExample{  
+	
+	public static void main(String args[]){  
+	  LinkedHashSet<String> al=new LinkedHashSet<String>();  
+	  al.add("Nag");  
+	  al.add("Shankar");  
+	  al.add("Rohit");  
+	  al.add("Avi");  
+	  Iterator<String> itr=al.iterator();  
+	  while(itr.hasNext()){  
+		  System.out.println(itr.next());  
+	  }  
+ }  
+}  
+
+-------------------------------------------------------------------------------------------
+/* 
+ * Program to demonstrate usage of TreeSet
+ */
+
+package task.collections;
+
+import java.util.*;  
+
+class TreeSetExample{  
+
+	public static void main(String args[]){  
+	    
+	  TreeSet<String> al=new TreeSet<String>();  
+	  al.add("Ram");  
+	  al.add("Rahim");  
+	  al.add("Rajesh");  
+	  al.add("Rahul");  
+	    
+	  Iterator<String> itr=al.iterator();  
+	  while(itr.hasNext()){  
+		  System.out.println(itr.next());  
+  }  
+ }  
+}  
