@@ -1,0 +1,144 @@
+Problem 1) 
+Average Value (Java 8 Lambdas and Streams) .Write a method that returns the average of a list of integers. – 2 Marks
+
+package com.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.OptionalDouble;
+
+public class AverageofListofIntegers {
+
+	public void average(List<Integer> list) {
+		OptionalDouble avg = list.stream().mapToDouble(i -> i).average();
+		System.out.println("Average = " + avg.getAsDouble());
+	}
+
+	public static void main(String[] args) {
+		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+		AverageofListofIntegers average = new AverageofListofIntegers();
+		average.average(list);
+	}
+}
+
+---------------------------------------------------------------------------------------------------------------_
+
+Problem 2) 
+Comma Separated (Java 8 Lambdas and Streams)
+Write a method that returns a comma separated string based on a given list of integers. Each element should preceded by the letter 'e' if the number is even, and preceded by the letter 'o' if the number is odd. For example, if the input list is (3,44), the output should be 'o3,e44'.  – 2 Marks
+
+
+package com.java8;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+public class OddEvenProblem {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> arrList = new ArrayList<Integer>();
+		arrList.add(1);
+		arrList.add(2);
+		arrList.add(3);
+		arrList.add(4);
+		arrList.add(5);
+		arrList.add(6);
+
+		System.out.println("Even Number-->e" + arrList.stream().filter(i -> i % 2 == 0)
+				.map(number -> String.valueOf(number)).collect(Collectors.joining("e")));
+		System.out.println("Odd Number-->o" + arrList.stream().filter(i -> i % 2 == 1)
+				.map(number -> String.valueOf(number)).collect(Collectors.joining("o")));
+
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------_
+
+Problem 3) Filter Strings (Java 8 Lambdas and Streams)
+Given a list of Strings, write a method that returns a list of all strings that start with the letter 'a' (lower case) and have exactly 3 letters. TIP: Use Java 8 Lambdas and Streams API's. – 2 Marks
+
+
+package com.java8;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FilterString {
+
+	public static void main(String[] args) {
+		List<String> arrList = Arrays.asList("amar", "anjal", "pranavi",
+				"anish", "efg", "anu", "", "anj");
+		arrList.stream().filter((p) -> p.startsWith("a"))
+				.filter(p -> p.length() == 3)
+				.forEach((p) -> System.out.println(p));
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------_
+
+Problem 4)
+ 1. Basic lambdas. Make an array containing a few Strings. Sort it by
+• length (i.e., shortest to longest)  - 1 Mark
+• reverse length (i.e., longest to shortest) - 1 Mark
+• alphabetically by the first character only - 1 Mark
+(Hint: charAt(0) returns the numeric code for the first character)
+• Strings that contain “e” first, everything else second. For now, put the code directly in the lambda.
+(Hint: remember that the body of a lambda are allowed to have curly braces and a return statement.
+See the first two lambda examples in the notes.) - 1 Mark
+• Redo the previous problem, but use a static helper method so that your lambda looks like this:
+Arrays.sort(words, (s1,s2) -> Utils.yourMethod(s1,s2)) - 1 Mark
+
+
+package com.java8;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ArrayProblem {
+
+	public static void main(String[] args) {
+		String[] words = { "anvesh", "kranthi", "venkatesh", "arun", "soma", "naveen", "koti", "vinay" };
+		
+		System.out.println("Sort by array: ");
+		Arrays.sort(words, (x, y) -> Integer.compare(x.length(), y.length()));
+		System.out.println(Arrays.deepToString(words));
+		System.out.println("Sort by reverse: ");
+		Arrays.sort(words, (x, y) -> Integer.compare(y.length(), x.length()));
+		System.out.println(Arrays.deepToString(words));
+
+		System.out.println("Problem 4.4: ");
+		List<String> arrList = Arrays.asList(words);
+		arrList.stream().filter((p) -> p.startsWith("e")).forEach((p) -> System.out.println(p));
+
+		List<String> strings = Arrays.asList(words);
+
+		// Shortest to Longest:
+		List<String> filtered = strings.stream().filter(string -> string.startsWith("e")).collect(Collectors.toList());
+		System.out.println("String that contains e first :" + filtered);
+
+		Collections.sort(strings, new Comparator<String>() {
+			public int compare(String s1, String s2) {
+				return s1.length() - s2.length();
+			}
+		});
+		System.out.println("Shortest to Longest: " + strings);
+
+		// Longest to shortest:
+		Collections.sort(strings, new Comparator<String>() {
+			public int compare(String s1, String s2) {
+				return s2.length() - s1.length();
+			}
+		});
+		System.out.println("Longest to shortest: " + strings);
+
+		// sorting based on alphabetical order
+		strings.sort(String::compareTo);
+		System.out.println("alphabatical : " + strings);
+	}
+
+}
